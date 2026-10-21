@@ -1,0 +1,28 @@
+[project]
+name = "deep-agent"
+version = "0.1.0"
+description = "Autonomous Multi-Agent Soft-ware Engineering Platform"
+readme = "README.md"
+authors = [{ name = "Rahul" }]
+requires-python = ">3.13,<3.14"
+dependencies= [
+    "deepagents",
+    "google-genai",
+    "langchain-google-genai",
+    "beautifulsoup4",
+    "langchain-core",
+    "uvicorn",
+    "langgraph",
+    "fastapi",
+    "pydantic",
+    "pydantic-settings",
+    "httpx",
+    "tavily-python",
+
+]
+
+[project.scripts]
+deep-agent = "src.main:main"
+
+[tool.poetry]
+packages = [{ include = "src" }]
