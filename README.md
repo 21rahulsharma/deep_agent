@@ -109,10 +109,22 @@ From the project root:
    ```dotenv
    GEMINI_API_KEY=your-gemini-api-key
    GEMINI_MODEL_NAME=gemini-3.1-flash-lite
+   LANGSMITH_TRACING=true
+   LANGSMITH_ENDPOINT=https://api.smith.langchain.com
+   LANGSMITH_API_KEY=your-langsmith-api-key
+   LANGSMITH_AGENT_ID=deep-agent
+   LANGSMITH_AGENT_ENVIRONMENT=local
    ```
 
-   The application reads this setting as `gemini_api_key`. Do not commit the
-   `.env` file or API key.
+   The application loads `.env` at startup without overriding environment
+   variables supplied by the deployment. Provide credentials through your platform's
+   secret manager rather than a checked-in file.
+
+   LangSmith tracing sends agent/model inputs, outputs, and run metadata to
+   LangSmith. Create the `deep-agent` agent and its `local` environment in your
+   LangSmith workspace before running the app. Set `LANGSMITH_TRACING=false`
+   to disable tracing when needed, and avoid sending sensitive data unless your
+   organization's data-handling policy allows it.
 
 4. Start the API using either command:
 
@@ -143,6 +155,11 @@ Settings can be provided in `.env` or through environment variables:
 | `DDG_HTML_URL` | DuckDuckGo HTML search endpoint | `https://html.duckduckgo.com/html/` |
 | `MAX_SUB_QUESTIONS` | Maximum research sub-questions | `5` |
 | `SOURCES_PER_QUESTION` | Search sources per research question | `3` |
+| `LANGSMITH_TRACING` | Enable LangSmith tracing | `false` unless configured |
+| `LANGSMITH_ENDPOINT` | LangSmith API endpoint | `https://api.smith.langchain.com` |
+| `LANGSMITH_API_KEY` | LangSmith API credential | Not set |
+| `LANGSMITH_AGENT_ID` | Registered LangSmith agent ID | Not set |
+| `LANGSMITH_AGENT_ENVIRONMENT` | Registered agent environment | Not set |
 
 Although the request model includes other provider names, Gemini is the LLM
 client currently registered by the application.

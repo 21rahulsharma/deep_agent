@@ -1,8 +1,12 @@
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import AsyncIterator
 
+from dotenv import load_dotenv
 from fastapi import FastAPI
 import uvicorn
+
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 from src.agent import create_agent_setup
 from src.api import router

@@ -16,6 +16,7 @@ dependencies= [
     "fastapi",
     "pydantic",
     "pydantic-settings",
+    "python-dotenv",
     "httpx",
     "tavily-python",
 
